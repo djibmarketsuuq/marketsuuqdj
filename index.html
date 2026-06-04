@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -263,14 +264,24 @@ footer{background:var(--text);margin-top:48px;padding:40px 20px 20px}
 .edit-overlay.open{display:flex}
 .edit-box{background:var(--white);border-radius:var(--radius2);padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;position:relative;animation:mup .24s ease}
 
-/* ── RESPONSIVE MOBILE-FIRST ── */
+/* ── BOTTOM NAV MOBILE ── */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:300;padding:0;height:60px}
+.mob-nav-inner{display:flex;height:100%}
+.mob-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--text3);cursor:pointer;border:none;background:transparent;transition:color .18s;padding:0;-webkit-tap-highlight-color:transparent}
+.mob-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mob-btn.active,.mob-btn:active{color:var(--green)}
+.mob-btn-sell{background:var(--accent);border-radius:50%;width:50px;height:50px;margin-top:-20px;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,87,34,.45);color:#fff!important;flex:0 0 50px;margin-left:auto;margin-right:auto}
+.mob-btn-sell svg{stroke:#fff;width:24px;height:24px}
+
+/* ── RESPONSIVE ── */
 @media(max-width:1050px){.main{grid-template-columns:1fr}.sidebar{display:none}}
+
 @media(max-width:768px){
   .topbar{display:none}
   .header-inner{padding:10px 14px;gap:10px;flex-wrap:wrap}
   .search-wrap{order:3;flex:0 0 100%;max-width:100%}
   .search-wrap select{display:none}
-  .main{padding:10px 12px}
+  .main{padding:10px 12px 80px}
   .grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .boost-banner{flex-direction:column;gap:14px}
   .bb-stats{justify-content:flex-start}
@@ -278,48 +289,95 @@ footer{background:var(--text);margin-top:48px;padding:40px 20px 20px}
   .nav-cat{padding:10px 12px;font-size:12px}
   .pill{padding:6px 12px;font-size:12px}
   .auth-box{padding:22px 18px}
+  .mob-nav{display:flex}
+  .footer{padding-bottom:70px}
+  /* Cacher les boutons du header sur tablette */
+  .header-actions .btn-login{display:none}
+  .header-actions .btn-sell{display:none}
 }
+
 @media(max-width:480px){
-  .header-inner{padding:10px 12px;gap:8px}
-  .logo-mark{width:34px;height:34px;font-size:19px}
+  /* Header compact */
+  .header-inner{padding:10px 12px;gap:8px;flex-wrap:nowrap}
+  .logo-mark{width:34px;height:34px;font-size:18px;border-radius:8px}
   .logo-name{font-size:17px}
-  .btn-sell{padding:8px 13px;font-size:13px}
-  .btn-login{padding:8px 12px;font-size:13px}
-  .nav-uname{display:none}
-  .nav-user-btn{padding:4px 8px}
-  .nav-cat{padding:10px 11px;font-size:12px;gap:4px}
+  .search-wrap{order:unset;flex:1;min-width:0}
+  .search-wrap input{font-size:15px;padding:9px 10px}
+  .search-btn{padding:9px 12px;font-size:13px}
+  .header-actions{display:none}
+
+  /* Nav cats slim */
+  .nav-cats-inner{padding:0 8px}
+  .nav-cat{padding:9px 10px;font-size:11.5px;gap:3px}
+
+  /* Main */
+  .main{padding:8px 10px 80px;gap:14px}
+
+  /* Grid 2 colonnes serrées */
   .grid{grid-template-columns:repeat(2,1fr);gap:8px}
-  .card-img{height:110px;font-size:32px}
-  .card-body{padding:8px 10px 10px}
-  .card-price{font-size:13px}
-  .card-title{font-size:12px}
-  .card-meta{font-size:11px}
+  .card{border-radius:12px}
+  .card-img{height:115px;font-size:34px;border-radius:12px 12px 0 0}
+  .card-body{padding:8px 9px 10px}
+  .card-price{font-size:13px;font-weight:800}
+  .card-title{font-size:12px;line-height:1.3;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .card-meta{font-size:10.5px}
+  .card-foot{margin-top:6px;padding-top:6px}
+  .card-time{font-size:10px}
+  .fav-btn{font-size:14px}
+
+  /* Sections */
   .sec-title{font-size:15px}
-  .pills{gap:6px}
-  .pill{padding:6px 11px;font-size:12px}
-  .boost-banner{padding:16px;gap:12px}
+  .sec-header{margin-bottom:10px}
+  .pills{gap:6px;padding-bottom:4px}
+  .pill{padding:6px 10px;font-size:11.5px;border-radius:16px}
+
+  /* Banner */
+  .boost-banner{padding:14px;border-radius:14px;gap:10px}
   .bb-left h3{font-size:14px}
+  .bb-left p{font-size:12px}
+  .btn-boost{padding:10px 14px;font-size:13px}
+  .bb-stats{gap:12px}
+  .bb-stat-n{font-size:18px}
+  .bb-stat-l{font-size:11px}
+
+  /* Overlays → bottom sheet */
   .overlay{padding:0;align-items:flex-end}
-  .mbox{padding:20px 16px;border-radius:20px 20px 0 0}
-  .mbox.md{max-height:92vh;overflow-y:auto;border-radius:20px 20px 0 0}
-  .mbox.sm{max-height:92vh;border-radius:20px 20px 0 0}
-  .m-title{font-size:17px}
-  .finput,.fselect,.ftextarea{font-size:16px;padding:12px 13px}
-  .bopt{padding:12px}
-  .bopt-price{font-size:16px}
-  .btn-submit{padding:15px;font-size:16px}
-  .btn-cancel{padding:13px;font-size:15px}
-  .photo-upload{padding:18px 14px}
+  .mbox{padding:20px 16px 32px;border-radius:22px 22px 0 0;max-height:94vh;overflow-y:auto}
+  .mbox.md{max-height:94vh;border-radius:22px 22px 0 0;padding:20px 16px 32px}
+  .mbox.sm{max-height:94vh;border-radius:22px 22px 0 0}
+  .m-title{font-size:17px;margin-bottom:16px}
+  .m-close{top:14px;right:14px}
+
+  /* Formulaires */
+  .finput,.fselect,.ftextarea{font-size:16px;padding:12px 13px;border-radius:10px}
+  .flabel{font-size:13px}
+  .frow{grid-template-columns:1fr}
+  .bopt{padding:12px 14px}
+  .bopt-price{font-size:15px}
+  .btn-submit{padding:15px;font-size:16px;border-radius:12px}
+  .btn-cancel{padding:13px;font-size:15px;border-radius:12px}
+  .photo-upload{padding:16px 14px}
   .plan-price{font-size:20px}
   .btn-wa-pay{padding:14px;font-size:15px}
-  .search-wrap input{font-size:16px}
-  .search-btn{padding:10px 13px;font-size:13px}
-  .frow{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
+
+  /* Detail */
+  .detail-img-item{height:200px;font-size:56px}
+  .detail-price{font-size:22px}
+  .detail-title{font-size:16px}
+
+  /* Auth/profil bottom sheet */
   .auth-overlay{padding:0;align-items:flex-end}
-  .auth-box{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;padding:22px 16px}
+  .auth-box{border-radius:22px 22px 0 0;max-height:94vh;overflow-y:auto;padding:24px 16px 36px}
   .edit-overlay{padding:0;align-items:flex-end}
-  .edit-box{border-radius:20px 20px 0 0;max-height:92vh;padding:20px 16px}
+  .edit-box{border-radius:22px 22px 0 0;max-height:94vh;padding:20px 16px 36px}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr}
+  .footer{padding-bottom:70px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:6px;font-size:12px}
+
+  /* Toast au-dessus de la barre */
+  .toast{bottom:76px}
 }
 
 </style>
@@ -797,7 +855,7 @@ function doRegister(){
   users[phone]={phone:phone,name:name,pwdHash:hashPwd(pass),createdAt:Date.now()};
   saveUsers(users);setSession({phone:phone,name:name});
   showAuthMsg('✅ Compte créé !','ok');
-  setTimeout(function(){closeAuthModal();updateAuthNav();showToast('Bienvenue, '+name+' !');},800);
+  setTimeout(function(){closeAuthModal();updateAuthNav();updateMobNav();showToast('Bienvenue, '+name+' !');},800);
 }
 function doLogin(){
   var phone=normalizePhone(document.getElementById('loginPhone').value);
@@ -808,11 +866,11 @@ function doLogin(){
   setSession({phone:phone,name:user.name});
   showAuthMsg('✅ Connexion réussie !','ok');
   setTimeout(function(){
-    closeAuthModal();updateAuthNav();showToast('Bonjour, '+user.name+' !');
+    closeAuthModal();updateAuthNav();updateMobNav();showToast('Bonjour, '+user.name+' !');
     if(_pendingPublish){_pendingPublish=false;openPublish();}
   },700);
 }
-function doLogout(){clearSession();closeProfileModal();updateAuthNav();showToast('Vous êtes déconnecté(e)');}
+function doLogout(){clearSession();closeProfileModal();updateAuthNav();updateMobNav();showToast('Vous êtes déconnecté(e)');}
 
 var _pendingPublish=false;
 function requireLoginThenPublish(){
@@ -1072,9 +1130,59 @@ document.addEventListener('keydown',function(e){
 ['regName','regPhone','regPass','regPass2'].forEach(function(id){document.getElementById(id).addEventListener('keydown',function(e){if(e.key==='Enter')doRegister();});});
 document.getElementById('searchInput').addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
 
+// ── BOTTOM NAV MOBILE ──
+function mobGo(page, btn){
+  document.querySelectorAll('.mob-btn').forEach(function(b){b.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  if(page==='search'){
+    document.getElementById('searchInput').focus();
+    document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  if(page==='fav') showToast('Favoris bientôt disponibles');
+}
+// Mettre à jour le bouton Compte de la bottom nav selon l'état de connexion
+function updateMobNav(){
+  var user=getSession();
+  var btn=document.getElementById('mobbProfile');
+  if(!btn)return;
+  if(user){
+    btn.innerHTML='<div style="width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">'+user.name.charAt(0).toUpperCase()+'</div><span>'+user.name.split(' ')[0]+'</span>';
+    btn.onclick=openProfileModal;
+  } else {
+    btn.innerHTML='<svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Compte</span>';
+    btn.onclick=openAuthModal;
+  }
+}
+
 // ── INIT ──
 updateAuthNav();
+updateMobNav();
 loadAds();
 </script>
+<!-- BOTTOM NAV MOBILE -->
+<nav class="mob-nav" id="mobNav">
+  <div class="mob-nav-inner">
+    <button class="mob-btn active" id="mobbHome" onclick="mobGo('home',this)">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Accueil
+    </button>
+    <button class="mob-btn" id="mobbSearch" onclick="mobGo('search',this)">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Chercher
+    </button>
+    <button class="mob-btn mob-btn-sell" onclick="requireLoginThenPublish()">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <button class="mob-btn" id="mobbFav" onclick="mobGo('fav',this)">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Favoris
+    </button>
+    <button class="mob-btn" id="mobbProfile" onclick="openAuthModal()">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Compte
+    </button>
+  </div>
+</nav>
+
 </body>
 </html>
