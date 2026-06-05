@@ -253,16 +253,19 @@ footer{background:var(--white);border-top:1px solid var(--border);margin-top:32p
 
 /* ══ BOTTOM NAV MOBILE ══ */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:300;padding-bottom:env(safe-area-inset-bottom,0px)}
-.mob-nav-inner{display:flex;align-items:center;height:62px;padding:0 4px}
-.mob-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:600;color:var(--text3);border:none;background:transparent;padding:6px 0;transition:color .15s;height:100%;min-width:0}
-.mob-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.mob-btn span{font-size:10px;font-weight:600;white-space:nowrap}
-.mob-btn.active,.mob-btn:active{color:var(--green)}
-.mob-btn-sell{flex:0 0 64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0;border:none;background:transparent;-webkit-tap-highlight-color:transparent}
-.mob-sell-circle{width:46px;height:46px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(255,87,34,.4);transition:transform .15s}
-.mob-sell-circle svg{stroke:#fff;width:22px;height:22px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.mob-btn-sell span{font-size:10px;font-weight:600;color:var(--text3)}
-.mob-btn-sell:active .mob-sell-circle{transform:scale(.92)}
+.mob-nav-inner{display:flex;align-items:stretch;height:64px;width:100%}
+.mob-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:transparent;padding:0;transition:color .15s;color:var(--text3);-webkit-tap-highlight-color:transparent;cursor:pointer;min-width:0}
+.mob-btn svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.mob-btn span{font-size:10px;font-weight:600;white-space:nowrap;line-height:1}
+.mob-btn.active{color:var(--green)}
+.mob-btn:active{color:var(--green);opacity:.8}
+
+/* Bouton Vendre central */
+.mob-btn-sell{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:transparent;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative}
+.mob-sell-circle{width:50px;height:50px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,87,34,.45);transition:transform .15s;margin-top:-10px}
+.mob-sell-circle svg{stroke:#fff;fill:none;width:24px;height:24px;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mob-btn-sell span{font-size:10px;font-weight:600;color:var(--text3);line-height:1}
+.mob-btn-sell:active .mob-sell-circle{transform:scale(.9)}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1050px){
@@ -701,16 +704,19 @@ footer{background:var(--white);border-top:1px solid var(--border);margin-top:32p
 <nav class="mob-nav" id="mobNav">
   <div class="mob-nav-inner">
 
+    <!-- Accueil -->
     <button class="mob-btn active" id="mobbHome" onclick="mobGo('home',this)">
       <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span>Accueil</span>
     </button>
 
+    <!-- Recherche -->
     <button class="mob-btn" id="mobbSearch" onclick="mobGo('search',this)">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span>Chercher</span>
+      <span>Recherche</span>
     </button>
 
+    <!-- Vendre (centre) -->
     <button class="mob-btn-sell" onclick="requireLoginThenPublish()">
       <div class="mob-sell-circle">
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -718,11 +724,13 @@ footer{background:var(--white);border-top:1px solid var(--border);margin-top:32p
       <span>Vendre</span>
     </button>
 
+    <!-- Favoris -->
     <button class="mob-btn" id="mobbFav" onclick="mobGo('fav',this)">
       <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       <span>Favoris</span>
     </button>
 
+    <!-- Compte -->
     <button class="mob-btn" id="mobbProfile" onclick="openAuthModal()">
       <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span>Compte</span>
